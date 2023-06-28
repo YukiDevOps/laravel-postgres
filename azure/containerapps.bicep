@@ -14,8 +14,8 @@ param regPswd string
 param commitSha string
 param nginxImageBase string = 'azcry.azurecr.io/laravel-nginx:'
 param appImageBase string = 'azcry.azurecr.io/laravel-app:'
-param nginxImage string = '${nginxImageBase}And${commitSha}'
-param appImage string = '${appImageBase}And${commitSha}'
+param nginxImage string = '${nginxImageBase}${commitSha}'
+param appImage string = '${appImageBase}${commitSha}'
 
 
 resource managedEnvironments_managedEnvironment_rglaravelapp_9dfd_name_resource 'Microsoft.App/managedEnvironments@2022-11-01-preview' = {
