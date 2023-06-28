@@ -31,7 +31,7 @@ resource managedEnvironments_managedEnvironment_rglaravelapp_9dfd_name_resource 
 
 resource containerapps_containerapp_laravel_name_resource 'Microsoft.App/containerapps@2022-11-01-preview' = {
   name: containerapps_containerapp_laravel_name
-  location: 'Japan East'
+  location: location
   identity: {
     type: 'None'
   }
