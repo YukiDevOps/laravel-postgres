@@ -1,5 +1,6 @@
 param containerapps_containerapp_laravel_name string = 'containerapp-laravel'
 param managedEnvironments_managedEnvironment_rglaravelapp_9dfd_name string = 'managedEnvironment-rglaravelapp-9dfd'
+param location string = 'Japan East'
 
 param appKey string
 param dbConnection string
@@ -13,7 +14,7 @@ param regPswd string
 
 resource managedEnvironments_managedEnvironment_rglaravelapp_9dfd_name_resource 'Microsoft.App/managedEnvironments@2022-11-01-preview' = {
   name: managedEnvironments_managedEnvironment_rglaravelapp_9dfd_name
-  location: 'Japan East'
+  location: location
   properties: {
     appLogsConfiguration: {
       destination: 'log-analytics'
