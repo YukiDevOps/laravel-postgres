@@ -1,11 +1,4 @@
-param sites_laravel_psql_sample_name string = 'laravel-psql-sample'
-param registries_azcry_name string = 'azcry'
-param containerapps_containerapps_test_name string = 'containerapps-test'
-param serverfarms_ASP_rglaravelapp_8b80_name string = 'ASP-rglaravelapp-8b80'
 param containerapps_containerapp_laravel_name string = 'containerapp-laravel'
-param flexibleServers_postgres_lara_name string = 'postgres-lara'
-param storageAccounts_laravelpostgresappfiles_name string = 'laravelpostgresappfiles'
-param workspaces_workspacerglaravelapp8de9_name string = 'workspacerglaravelapp8de9'
 param managedEnvironments_managedEnvironment_rglaravelapp_9dfd_name string = 'managedEnvironment-rglaravelapp-9dfd'
 
 param appKey string
