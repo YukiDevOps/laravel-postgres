@@ -97,7 +97,7 @@ resource containerapps_containerapp_laravel_name_resource 'Microsoft.App/contain
           image: 'azcry.azurecr.io/laravel-nginx:latest'
           name: 'laravel-nginx'
           resources: {
-            cpu: '0.25'
+            cpu: json('0.25')
             memory: '0.5Gi'
           }
           probes: []
@@ -150,7 +150,7 @@ resource containerapps_containerapp_laravel_name_resource 'Microsoft.App/contain
             }
           ]
           resources: {
-            cpu: '0.25'
+            cpu: json('0.25')
             memory: '0.5Gi'
           }
           probes: []
