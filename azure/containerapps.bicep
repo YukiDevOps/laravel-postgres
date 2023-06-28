@@ -5,6 +5,7 @@ param appKey string
 param dbConnection string
 param dbDatabase string
 param dbHost string
+@secure()
 param dbPassword string
 param dbUsername string
 param regPswd string
