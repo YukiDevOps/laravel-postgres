@@ -67,7 +67,7 @@ jobs:
           dbUsername=${{ secrets.DB_USERNAME }}
           regPswd=${{ secrets.REG_PSWD }}
           commitSha=${{ env.SHA}}
-        addtionArguments: '--what-if'
+        additionalArguments: '--what-if'
     - name: Deploy Bicep template
       uses: azure/arm-deploy@v1
       with:
