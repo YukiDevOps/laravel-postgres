@@ -49,11 +49,11 @@ jobs:
         resourceGroupName: ${{ env.ResourceGroupName }}
         template: azure/containerapps.bicep
         parameters: >
-          appKey=${{ secrets.APP_KEY_SECRET }}
-          dbConnection=${{ secrets.DB_CONNECTION_SECRET }}
-          dbDatabase=${{ secrets.DB_DATABASE_SECRET }}
-          dbHost=${{ secrets.DB_HOST_SECRET }}
-          dbPassword=${{ secrets.DB_PASSWORD_SECRET }}
-          dbUsername=${{ secrets.DB_USERNAME_SECRET }}
-          regPswd=${{ secrets.REG_PSWD_SECRET }}
+          appKey=${{ secrets.APP_KEY }}
+          dbConnection=${{ secrets.DB_CONNECTION }}
+          dbDatabase=${{ secrets.DB_DATABASE }}
+          dbHost=${{ secrets.DB_HOST }}
+          dbPassword=${{ secrets.DB_PASSWORD }}
+          dbUsername=${{ secrets.DB_USERNAME }}
+          regPswd=${{ secrets.REG_PSWD }}
         addtionParameters: '--what-if --mode Incremental'
