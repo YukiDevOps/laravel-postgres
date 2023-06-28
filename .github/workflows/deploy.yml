@@ -53,7 +53,7 @@ jobs:
       with:
         inlineScript: |
           #!/bin/bash
-          az deployment group what-if -f ./containerapps.json -g ${{ env.ResourceGroupName }} --name ${{ env.ResourceGroupName }}    
+          az deployment group what-if -f azure/containerapps.json -g ${{ env.ResourceGroupName }} --name ${{ env.ResourceGroupName }}    
     # Azure へ反映する。
     - name: Deploy Azure Bicep
       uses: Azure/CLI@v1
