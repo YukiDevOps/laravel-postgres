@@ -15,6 +15,16 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+    - uses: benjlevesque/short-sha@v2.2
+      id: short-sha
+      with:
+        length: 6
+    - run: echo $SHA
+      env:
+        SHA: ${{ steps.short-sha.outputs.sha }}
+    - run: echo $SHA
+      env:
+        SHA: ${{ env.SHA }}
 
     - name: Login to Azure
       uses: azure/login@v1
@@ -33,7 +43,7 @@ jobs:
         context: .
         file: ./docker/infra/php/Dockerfile
         push: true
-        tags: azcry.azurecr.io/laravel-app:latest
+        tags: azcry.azurecr.io/laravel-app:${{env.SHA}}
 
     - name: Build and push Docker image for Nginx
       uses: docker/build-push-action@v2
@@ -41,7 +51,7 @@ jobs:
         context: .
         file: ./docker/infra/web/Dockerfile
         push: true
-        tags: azcry.azurecr.io/laravel-nginx:latest
+        tags: azcry.azurecr.io/laravel-nginx:${{env.SHA}}
     - name: Deploy Bicep template
       uses: azure/arm-deploy@v1
       with:
@@ -56,4 +66,5 @@ jobs:
           dbPassword=${{ secrets.DB_PASSWORD }}
           dbUsername=${{ secrets.DB_USERNAME }}
           regPswd=${{ secrets.REG_PSWD }}
+          commitSha=${{ env.SHA}}
         addtionParameters: '--what-if --mode Incremental'

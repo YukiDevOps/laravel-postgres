@@ -11,6 +11,12 @@ param dbPassword string
 param dbUsername string
 param regPswd string
 
+param commitSha string
+param nginxImageBase string = 'azcry.azurecr.io/laravel-nginx:'
+param appImageBase string = 'azcry.azurecr.io/laravel-app:'
+param nginxImage string = '${nginxImageBase}And${commitSha}'
+param appImage string = '${appImageBase}And${commitSha}'
+
 
 resource managedEnvironments_managedEnvironment_rglaravelapp_9dfd_name_resource 'Microsoft.App/managedEnvironments@2022-11-01-preview' = {
   name: managedEnvironments_managedEnvironment_rglaravelapp_9dfd_name
@@ -94,7 +100,7 @@ resource containerapps_containerapp_laravel_name_resource 'Microsoft.App/contain
     template: {
       containers: [
         {
-          image: 'azcry.azurecr.io/laravel-nginx:latest'
+          image: nginxImage
           name: 'laravel-nginx'
           resources: {
             cpu: json('0.25')
@@ -109,7 +115,7 @@ resource containerapps_containerapp_laravel_name_resource 'Microsoft.App/contain
           ]
         }
         {
-          image: 'azcry.azurecr.io/laravel-app:latest'
+          image: appImage
           name: 'laravel-app'
           env: [
             {
