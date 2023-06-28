@@ -8,10 +8,9 @@ on:
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
-    # リソースグループ名やロケーションは env で指定
+    # リソースグループ名は env で指定
     env:
       ResourceGroupName: ${{ vars.RESOUCE_GROUP_NAME}}
-      ResourceGroupLocation: "japaneast"
 
     steps:
     - name: Checkout code
@@ -47,7 +46,7 @@ jobs:
       uses: azure/arm-deploy@v1
       with:
         scope: resourcegroup
-        resourceGroupName: your-resource-group
+        resourceGroupName: ${{ env.ResourceGroupName }}
         template: azure/containerapps.bicep
         parameters: >
           appKey=${{ secrets.APP_KEY_SECRET }}
