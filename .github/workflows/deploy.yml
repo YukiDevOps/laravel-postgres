@@ -43,21 +43,18 @@ jobs:
         file: ./docker/infra/web/Dockerfile
         push: true
         tags: azcry.azurecr.io/laravel-nginx:latest
-    # ビルドする。ARM テンプレートのJSONファイルが生成される。
-    - name: Azure Bicep Build
-      run: |
-        az bicep build --file azure/containerapps.bicep --outdir azure/
-    # what-if コマンドで実際の環境と diff をプレビューする。
-    - name: Preview Azure Bicep
-      uses: Azure/CLI@v1
+    - name: Deploy Bicep template
+      uses: azure/arm-deploy@v1
       with:
-        inlineScript: |
-          #!/bin/bash
-          az deployment group what-if -f azure/containerapps.json -g ${{ env.ResourceGroupName }} --name ${{ env.ResourceGroupName }}    
-    # Azure へ反映する。
-    - name: Deploy Azure Bicep
-      uses: Azure/CLI@v1
-      with:
-        inlineScript: |
-          #!/bin/bash
-          az deployment group create --mode Incremental -f azure/containerapps.json -g ${{ env.ResourceGroupName }} --name ${{ env.ResourceGroupName }}
+        scope: resourcegroup
+        resourceGroupName: your-resource-group
+        template: azure/containerapps.bicep
+        parameters: >
+          appKey=${{ secrets.APP_KEY_SECRET }}
+          dbConnection=${{ secrets.DB_CONNECTION_SECRET }}
+          dbDatabase=${{ secrets.DB_DATABASE_SECRET }}
+          dbHost=${{ secrets.DB_HOST_SECRET }}
+          dbPassword=${{ secrets.DB_PASSWORD_SECRET }}
+          dbUsername=${{ secrets.DB_USERNAME_SECRET }}
+          regPswd=${{ secrets.REG_PSWD_SECRET }}
+        addtionParameters: '--what-if --mode Incremental'

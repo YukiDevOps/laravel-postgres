@@ -8,6 +8,15 @@ param storageAccounts_laravelpostgresappfiles_name string = 'laravelpostgresappf
 param workspaces_workspacerglaravelapp8de9_name string = 'workspacerglaravelapp8de9'
 param managedEnvironments_managedEnvironment_rglaravelapp_9dfd_name string = 'managedEnvironment-rglaravelapp-9dfd'
 
+param appKey string
+param dbConnection string
+param dbDatabase string
+param dbHost string
+param dbPassword string
+param dbUsername string
+param regPswd string
+
+
 resource managedEnvironments_managedEnvironment_rglaravelapp_9dfd_name_resource 'Microsoft.App/managedEnvironments@2022-11-01-preview' = {
   name: managedEnvironments_managedEnvironment_rglaravelapp_9dfd_name
   location: 'Japan East'
@@ -38,24 +47,31 @@ resource containerapps_containerapp_laravel_name_resource 'Microsoft.App/contain
       secrets: [
         {
           name: 'app-key'
+          value: appKey
         }
         {
           name: 'db-connection'
+          value: dbConnection
         }
         {
           name: 'db-database'
+          value: dbDatabase
         }
         {
           name: 'db-host'
+          value: dbHost
         }
         {
           name: 'db-password'
+          value: dbPassword
         }
         {
           name: 'db-username'
+          value: dbUsername
         }
         {
           name: 'reg-pswd-5e905634-980b'
+          value: regPswd
         }
       ]
       activeRevisionsMode: 'Single'
