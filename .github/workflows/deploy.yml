@@ -3,7 +3,8 @@ name: Build Containers
 on:
   push:
     branches:
-      - feature/container-apps
+      - feature/**
+      - main
 
 jobs:
   build_and_deploy:
